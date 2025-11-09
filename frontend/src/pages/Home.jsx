@@ -19,17 +19,18 @@ export default function Home() {
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {visibleProducts.map(p => {
-          const imageUrl = p.imageUrl ? `http://localhost:8000${p.imageUrl}` : null
+           const imageUrl = p.imageUrl ? `${p.imageUrl}` : null
+           console.log('Product:', p.name, 'Image URL:', imageUrl)
 
-          return (
-            <article key={p.id} className="border rounded-lg p-4 bg-white shadow-sm">
-              <div className="h-80 w-full bg-gray-50 mb-4 flex items-center justify-center overflow-hidden">
-                {imageUrl ? (
-                  <img src={imageUrl} alt={p.name} className="w-full h-full object-cover" />
-                ) : (
-                  <span className="text-gray-400">Sin imagen</span>
-                )}
-              </div>
+           return (
+             <article key={p.id} className="border rounded-lg p-4 bg-white shadow-sm">
+               <div className="h-80 w-full bg-gray-50 mb-4 flex items-center justify-center overflow-hidden">
+                 {imageUrl ? (
+                   <img src={imageUrl} alt={p.name} className="w-full h-full object-cover" onError={(e) => console.error('Image load error for', p.name, 'URL:', imageUrl)} />
+                 ) : (
+                   <span className="text-gray-400">Sin imagen</span>
+                 )}
+               </div>
 
 
               <h3 className="text-xl font-semibold text-black">{p.name}</h3>

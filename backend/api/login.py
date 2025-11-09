@@ -1,8 +1,13 @@
-from fastapi import APIRouter, HTTPException, Depends, Form
+from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
 from config.database import get_db
 from models.user import User
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
 
 router = APIRouter(prefix="/api/login", tags=["auth"])
 
@@ -29,10 +34,12 @@ def get_login_form():
     return HTMLResponse(content=html_content)
 
 @router.post("/")
-def login(email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
+def login(request: LoginRequest, db: Session = Depends(get_db)):
     import logging
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
+    email = request.email
+    password = request.password
     logger.info(f"Attempting login for email: {email}")
     try:
         user = db.query(User).filter(User.email == email).first()
@@ -43,7 +50,7 @@ def login(email: str = Form(...), password: str = Form(...), db: Session = Depen
         else:
             logger.info(f"Creating new user for {email}")
             hashed_password = User.hash_password(password)
-            user = User(email=email, hashed_password=hashed_password)
+            user = User(name="", lastName="", phone="", email=email, hashed_password=hashed_password)
             db.add(user)
             logger.info(f"User added to session for {email}")
             db.commit()
