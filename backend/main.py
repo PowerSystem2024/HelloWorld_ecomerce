@@ -28,7 +28,7 @@ app.add_middleware(
 )
 
 # Mount static files for uploads/images
-app.mount("/images", StaticFiles(directory="uploads"), name="images")
+app.mount("/uploads", StaticFiles(directory="uploads"), name="images")
 
 # Include routers
 app.include_router(products.router)
