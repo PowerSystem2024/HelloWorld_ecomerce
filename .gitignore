@@ -4,8 +4,4 @@ dist
 .vscode
 .DS_Store
 venv/
-<<<<<<< HEAD
 **/__pycache__/
-=======
-**/__pycache__
->>>>>>> desarrollo
