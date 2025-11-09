@@ -28,7 +28,7 @@ export default function ProductView() {
         <div>
           <h2 className="text-2xl font-bold text-black">{prod.name}</h2>
           <p className="text-gray-600 mt-2">{prod.desc}</p>
-          <p className="text-3xl font-extrabold mt-6">${(prod.price/100).toFixed(2)}</p>
+          <p className="text-3xl font-extrabold mt-6">${prod.price.toFixed(2)}</p>
           <div className="mt-6 flex items-center gap-3">
             <button onClick={() => { addToCart(prod); navigate('/cart') }}className="px-4 py-2 rounded-md bg-black text-white font-medium">Comprar</button>
             <button onClick={() => addToCart(prod, 1)} className="px-4 py-2 rounded-md border border-black text-black">Añadir al carrito</button>

@@ -37,7 +37,7 @@ export default function Home() {
               <p className="text-sm text-gray-500">{p.desc}</p>
 
               <div className="mt-4 flex items-center justify-between">
-                <strong className="text-lg">${(p.price / 100).toFixed(2)}</strong>
+                <strong className="text-lg">${p.price.toFixed(2)}</strong>
                 <div className="flex gap-2">
                   <Link to={`/product/${p.id}`} className="px-3 py-1 border rounded-md text-black">Ver</Link>
                   <button
