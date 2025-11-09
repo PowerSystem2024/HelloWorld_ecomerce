@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse
 from pathlib import Path
 import logging
+import os
 from api import products, login, register
 from config.database import engine, Base
 from config.database_initialization import initialize_database
@@ -27,7 +28,7 @@ app.add_middleware(
 )
 
 # Mount static files for uploads/images
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+app.mount("/images", StaticFiles(directory="uploads"), name="images")
 
 # Include routers
 app.include_router(products.router)
@@ -37,6 +38,10 @@ app.include_router(register.router)
 @app.get("/{path:path}")
 def serve_spa(path: str):
     logging.info(f"Serving SPA for path: {path}")
+    if path.startswith("images/"):
+        file_path = os.path.join("uploads", path[len("images/"):])
+        if Path(file_path).exists() and Path(file_path).is_file():
+            return FileResponse(file_path)
     file_path = Path("../frontend/dist") / path
     logging.info(f"Checking file path: {file_path}")
     if file_path.exists() and file_path.is_file():

@@ -6058,3 +6058,102 @@ connection to server at "127.0.0.1", port 5432 failed: FATAL:  password authenti
 2025-11-08 21:51:45 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
 2025-11-08 21:51:45 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
 2025-11-08 21:51:45 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:00:55 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:00:55 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:00:55 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:00:55 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:00:55 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:00:55 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:00:55 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:00:55 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:00:55 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:00:55 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:00:55 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:03:04 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:03:04 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:03:04 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:03:04 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:03:04 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:03:04 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:03:04 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:03:04 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:03:04 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:03:04 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:03:04 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:04:08 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:04:08 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:04:08 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:04:08 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:04:08 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:04:08 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:04:08 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:04:08 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:04:08 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:04:08 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:04:08 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:09:15 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:09:15 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:09:15 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:09:15 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:09:15 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:09:15 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:09:15 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:09:15 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:09:15 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:09:15 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:09:15 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:10:06 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:10:06 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:10:06 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:10:06 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:10:06 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:10:06 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:10:06 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:10:06 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:10:06 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:10:06 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:10:06 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:12:09 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:12:09 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:12:09 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:12:09 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:12:09 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:12:09 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:12:09 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:12:09 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:12:09 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:12:09 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:12:09 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:28:10 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:28:10 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:28:10 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:28:10 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:28:10 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:28:10 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:28:10 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:28:10 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:28:10 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:28:10 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:28:10 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:28:25 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:28:25 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:28:25 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:28:25 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:28:25 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:28:25 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:28:25 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:28:25 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:28:25 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:28:25 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:28:25 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-08 22:28:31 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:28:31 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:28:31 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-08 22:28:31 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-08 22:28:31 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-08 22:28:31 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-08 22:28:31 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-08 22:28:31 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-08 22:28:31 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-08 22:28:31 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-08 22:28:31 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas

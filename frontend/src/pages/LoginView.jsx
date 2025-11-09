@@ -12,7 +12,7 @@ export default function LoginView(){
     if (!email || !password) return alert("Completá email y contraseña");
 
     try {
-      const res = await fetch("http://localhost:8000/api/login", {
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })

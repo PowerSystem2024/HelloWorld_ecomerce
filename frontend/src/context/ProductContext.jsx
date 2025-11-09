@@ -13,14 +13,18 @@ export function ProductProvider({ children }) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch('http://localhost:8000/api/products');
+        console.log('Fetching products from /api/products');
+        const res = await fetch('/api/products');
+        console.log('Response status:', res.status);
+        console.log('Response headers:', res.headers);
         const data = await res.json();
+        console.log('Fetched data:', data);
 
         if (data.error) throw new Error(data.error);
 
         setProducts(Array.isArray(data.products) ? data.products : []);
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching products:', err);
         setProducts([]); // Fallback por si hay error
       } finally {
         setLoading(false);
