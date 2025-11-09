@@ -1,45 +1,33 @@
 import { useState } from 'react';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import { useCart } from '../context/CartContext';
 
-// 1. INICIALIZA MERCADO PAGO (SOLO UNA VEZ)
-// REEMPLAZA ESTO con tu CLAVE PÚBLICA (Public Key) de Mercado Pago
-initMercadoPago('APP_USR-4b8dc1d0-f2db-4da1-80f9-93e9b20c0089', {
-  locale: 'es-AR' // Opcional: define el idioma
+initMercadoPago('APP_USR-c275d43a-9e61-4b37-80f8-45a1f5aa9b77', {
+  locale: 'es-AR'
 });
 
 export default function CheckoutView() {
+  const { cart } = useCart();
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // --- TODO: Reemplaza esto con los datos de tu carrito ---
-  // Estos datos deberían venir de tu estado global (Context, Zustand, Redux)
-  // o ser pasados desde la página del carrito (CartView).
-  // Por ahora, usamos datos de prueba para verificar que la conexión funciona.
-  const productData = {
-    title: 'Mi Producto de Prueba',
-    quantity: 1, // O la cantidad total de items
-    price: 150.50  // Asegúrate que este sea el PRECIO TOTAL del carrito
-  };
-  // ---------------------------------------------------------
 
   const handleCheckout = async () => {
     setIsLoading(true);
     setError(null);
 
     try {
-      // Transformar el carrito en el formato que espera Mercado Pago
+      // Mapear el carrito al formato esperado por el backend
       const itemsForMP = cart.map(p => ({
         title: p.name,
         quantity: p.qty,
         price: p.price
       }));
 
-      // Llamada al backend
       const response = await fetch('/api/create-preference', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: itemsForMP }) // <-- enviar varios items
+        body: JSON.stringify({ items: itemsForMP })
       });
 
       const data = await response.json();
@@ -59,41 +47,56 @@ export default function CheckoutView() {
 
 
   return (
-    // Tailwind ya está en tu App.jsx, así que usamos sus clases
     <div className="container mx-auto max-w-lg p-4">
       <h1 className="text-2xl font-bold mb-4">Finalizar Compra</h1>
-      
+
       <div className="border p-4 rounded-lg shadow-sm bg-gray-50">
         <h2 className="text-xl mb-2">Resumen del Pedido</h2>
-        <p><span className="font-semibold">{productData.title}</span></p>
-        <p>Cantidad: {productData.quantity}</p>
-        <p className="font-bold text-lg mt-2">Total: ${productData.price}</p>
 
-        <hr className="my-4" />
+        {cart.length === 0 ? (
+          <p className="text-gray-500">No hay productos en el carrito.</p>
+        ) : (
+          <div className="space-y-2">
+            {cart.map((item) => (
+              <div key={item.id} className="flex justify-between">
+                <span>{item.name}</span>
+                <span>
+                  {item.qty} x ${item.price.toFixed(2)}
+                </span>
+              </div>
+            ))}
 
-        {/* Aquí está la lógica:
-          - Si NO hay preferenceId, muestra tu botón "Pagar".
-          - Si SÍ hay preferenceId, muestra el botón de Mercado Pago.
-        */}
-        <div className="flex justify-center items-center h-20">
+            <hr className="my-2" />
+
+            <div className="flex justify-between font-bold text-lg mt-2">
+              <span>Total:</span>
+              <span>
+                ${cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2)}
+              </span>
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-center items-center h-20 mt-4">
           {!preferenceId ? (
-            <button 
-              onClick={handleCheckout} 
-              disabled={isLoading}
+            <button
+              onClick={handleCheckout}
+              disabled={isLoading || cart.length === 0}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-400"
             >
               {isLoading ? 'Generando...' : 'Pagar Ahora'}
             </button>
           ) : (
-            <Wallet 
-              initialization={{ preferenceId: preferenceId }} 
-              customization={{ texts: { valueProp: 'smart_option' }}}
+            <Wallet
+              initialization={{ preferenceId }}
+              customization={{ texts: { valueProp: 'smart_option' } }}
             />
           )}
         </div>
-        
+
         {error && <p className="text-red-500 text-center mt-4">{error}</p>}
       </div>
     </div>
   );
+
 }

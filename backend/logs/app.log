@@ -6157,3 +6157,18 @@ connection to server at "127.0.0.1", port 5432 failed: FATAL:  password authenti
 2025-11-08 22:28:31 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
 2025-11-08 22:28:31 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
 2025-11-08 22:28:31 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
+2025-11-09 18:36:46 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-09 18:36:46 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-09 18:40:36 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-09 18:40:36 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-09 18:42:50 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-09 18:42:50 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-09 18:42:50 - INFO - Posada - initialize_database:36 - 🚀 Inicializando base de datos del sistema de ecommerce...
+2025-11-09 18:42:50 - INFO - Posada - create_tables:15 - 🏗️ Creando tablas de base de datos...
+2025-11-09 18:42:50 - INFO - Posada - get_database_url:39 - ✅ URL de base de datos construida correctamente
+2025-11-09 18:42:50 - INFO - Posada - create_engine_and_session:59 - ✅ Engine y sesión de SQLAlchemy creados correctamente
+2025-11-09 18:42:50 - INFO - Posada - create_tables:25 - ✅ Tablas creadas exitosamente
+2025-11-09 18:42:50 - INFO - Posada - initialize_database:44 - 🎉 Base de datos inicializada correctamente
+2025-11-09 18:42:50 - INFO - Posada - initialize_database:45 - 📋 Resumen de inicialización:
+2025-11-09 18:42:50 - INFO - Posada - initialize_database:46 -    - ✅ Tabla 'users' creada (id, email, hashed_password)
+2025-11-09 18:42:50 - INFO - Posada - initialize_database:47 -    - ✅ Restricciones de unicidad aplicadas
