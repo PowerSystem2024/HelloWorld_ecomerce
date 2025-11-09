@@ -11,7 +11,7 @@ export default function ProductView() {
   if (loading) return <div className="p-6 text-center">Cargando producto...</div>
 
   const prod = products.find(p => p.id === Number(id))
-  const imageUrl = prod?.imageUrl ? `http://localhost:8000${prod.imageUrl}` : null; // o un placeholder "/images/default.png"
+  const imageUrl = prod?.imageUrl ? `${prod.imageUrl}` : null; // o un placeholder "/images/default.png"
 
   if (!prod) return <div className="p-6">Producto no encontrado</div>
 

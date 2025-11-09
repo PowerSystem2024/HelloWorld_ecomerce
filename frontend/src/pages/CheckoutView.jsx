@@ -32,7 +32,7 @@ export default function CheckoutView() {
     
     try {
       // 2. Llama a tu backend (FastAPI)
-      const response = await fetch('http://localhost:8000/api/create-preference', {
+      const response = await fetch('/api/create-preference', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
