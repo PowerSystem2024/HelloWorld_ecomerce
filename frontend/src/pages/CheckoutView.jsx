@@ -23,36 +23,31 @@ export default function CheckoutView() {
   };
   // ---------------------------------------------------------
 
-  /**
-   * Esta función llama a tu backend (FastAPI) para crear la preferencia
-   */
   const handleCheckout = async () => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
-      // 2. Llama a tu backend (FastAPI)
+      // Transformar el carrito en el formato que espera Mercado Pago
+      const itemsForMP = cart.map(p => ({
+        title: p.name,
+        quantity: p.qty,
+        price: p.price
+      }));
+
+      // Llamada al backend
       const response = await fetch('/api/create-preference', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(productData) // Envía los datos del producto
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: itemsForMP }) // <-- enviar varios items
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-         // Si FastAPI devuelve un error (ej. 500 o 400)
-         throw new Error(data.detail || 'Error del servidor');
-      }
+      if (!response.ok) throw new Error(data.detail || 'Error del servidor');
 
-      if (data.id) {
-        // 3. Si todo sale bien, guardamos el ID de la preferencia
-        setPreferenceId(data.id);
-      } else {
-         setError("No se pudo obtener el ID de la preferencia.");
-      }
+      if (data.id) setPreferenceId(data.id);
+      else setError("No se pudo obtener el ID de la preferencia.");
 
     } catch (error) {
       console.error("Error al crear la preferencia:", error);
@@ -61,6 +56,7 @@ export default function CheckoutView() {
       setIsLoading(false);
     }
   };
+
 
   return (
     // Tailwind ya está en tu App.jsx, así que usamos sus clases

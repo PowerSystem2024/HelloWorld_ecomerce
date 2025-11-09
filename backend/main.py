@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse, FileResponse
 from pathlib import Path
 import logging
 import os
-from api import products, login, register
+from api import products, login, register, create_preference
 from config.database import engine, Base
 from config.database_initialization import initialize_database
 
@@ -34,6 +34,7 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="images")
 app.include_router(products.router)
 app.include_router(login.router)
 app.include_router(register.router)
+app.include_router(create_preference.router)
 
 @app.get("/{path:path}")
 def serve_spa(path: str):
