@@ -33,7 +33,7 @@ def get_login_form():
     """
     return HTMLResponse(content=html_content)
 
-@router.post("/")
+@router.post("")
 def login(request: LoginRequest, db: Session = Depends(get_db)):
     import logging
     logging.basicConfig(level=logging.INFO)
@@ -44,22 +44,22 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
     try:
         user = db.query(User).filter(User.email == email).first()
         logger.info(f"User query completed for {email}")
-        if user:
-            if not user.verify_password(password):
-                raise HTTPException(status_code=401, detail="Invalid credentials")
-        else:
-            logger.info(f"Creating new user for {email}")
-            hashed_password = User.hash_password(password)
-            user = User(name="", lastName="", phone="", email=email, hashed_password=hashed_password)
-            db.add(user)
-            logger.info(f"User added to session for {email}")
-            db.commit()
-            logger.info(f"Commit successful for {email}")
-            db.refresh(user)
-            logger.info(f"User refresh completed for {email}")
+
+        if not user or not user.verify_password(request.password):
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+    
     except Exception as e:
         logger.error(f"Database error during login for {email}: {str(e)}")
         raise
 
+    # Return success response without password
+    user = {
+            "id": user.id,
+            "name": user.name,
+            "lastName": user.lastName,
+            "phone": user.phone,
+            "email": user.email
+        }
+
     # For now, return simple response without JWT since settings are not available
-    return {"user": {"id": user.id, "email": user.email}, "message": "Login successful"}
+    return {"user": user, "message": "Login successful"}
