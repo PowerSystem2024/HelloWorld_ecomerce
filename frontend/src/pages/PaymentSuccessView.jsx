@@ -3,7 +3,10 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
-export default function PaymentSuccessView() {
+export default function PaymentSuccessView({ onExit }) {
+  const handleClick = () => {
+    if (onExit) onExit(); // limpia el estado del contexto
+  };
   const { clearCart } = useCart()
 
   useEffect(() => {
@@ -19,6 +22,7 @@ export default function PaymentSuccessView() {
         </p>
         <Link
           to="/"
+          onClick={handleClick}
           className="px-6 py-2 rounded-md text-white bg-green-600 hover:bg-green-700 transition"
         >
           Volver al inicio

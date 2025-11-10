@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 
-export default function PaymentFailureView() {
+export default function PaymentFailureView({ onExit }) {
+  const handleClick = () => {
+    if (onExit) onExit(); // limpia el estado del contexto
+  };
   return (
     <main className="flex flex-col items-center justify-center min-h-[70vh] text-center p-6">
       <div className="bg-red-100 border border-red-300 rounded-2xl p-8 shadow-sm">
@@ -10,6 +13,7 @@ export default function PaymentFailureView() {
         </p>
         <Link
           to="/"
+          onClick={handleClick}
           className="px-6 py-2 rounded-md text-white bg-red-600 hover:bg-red-700 transition"
         >
           Volver al inicio
