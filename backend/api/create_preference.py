@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from fastapi import APIRouter, HTTPException
 from config.mercadopago_sdk import sdk
-from config.urls import ENV, PROD_FRONTEND_URL, DEV_FRONTEND_URL
+from config.urls import ENV, DEV_BACKEND_URL, PROD_BACKEND_URL
 
 class Item(BaseModel):
     title: str
@@ -16,9 +16,9 @@ router = APIRouter(prefix="/api/create-preference", tags=["payments"])
 
 def get_back_urls():
     if ENV == "development":
-        base = DEV_FRONTEND_URL
+        base = DEV_BACKEND_URL
     else:
-        base = PROD_FRONTEND_URL
+        base = PROD_BACKEND_URL
     return {
         "success": f"{base}/success",
         "failure": f"{base}/failure",
