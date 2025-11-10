@@ -7,18 +7,22 @@ import PaymentFailureView from "./pages/PaymentFailureView";
 import PaymentPendingView from "./pages/PaymentPendingView";
 
 export default function PaymentHandler() {
-  const { paymentStatus } = usePayment();
+  const { paymentStatus, setPaymentStatus } = usePayment();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    if (searchParams.get("status")) {
-      setSearchParams({}); // limpia query params
+  // Leemos el status de la query param si paymentStatus no está definido
+  const statusFromQuery = searchParams.get("status");
+
+  const status = paymentStatus || statusFromQuery;
+
+    useEffect(() => {
+    if (statusFromQuery) {
+      setPaymentStatus(null);   // limpia el estado del contexto
+      setSearchParams({});      // limpia la URL
     }
-  }, [searchParams, setSearchParams]);
+  }, [statusFromQuery, setSearchParams, setPaymentStatus]);
 
-  if (!paymentStatus) return <Home />;
-
-  switch (paymentStatus) {
+  switch (status) {
     case "success":
       return <PaymentSuccessView />;
     case "failure":
