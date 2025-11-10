@@ -1,0 +1,20 @@
+# Base image
+FROM node:20-slim
+
+# Definir directorio de trabajo
+WORKDIR /app/frontend
+
+# Copiar solo package.json y package-lock.json (sin node_modules)
+COPY frontend/package*.json ./
+
+# Instalar dependencias de Node
+RUN npm install
+
+# Copiar el resto del código (src, pages, configs, etc.)
+COPY frontend/ ./
+
+# Exponer puerto del frontend
+EXPOSE 5173
+
+# Ejecutar frontend con vite
+CMD ["npx", "vite", "--host"]

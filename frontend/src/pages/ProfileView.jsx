@@ -1,8 +1,24 @@
 import { useAuth } from '../context/AuthContext'
+import { Link } from 'react-router-dom'
 
-export default function ProfileView(){
+export default function ProfileView() {
   const { user } = useAuth()
-  if(!user) return <div className="p-6">No estás logueado</div>
+
+  if (!user) {
+    return (
+      <div className="text-center py-6">
+        <h3 className="text-xl font-semibold mb-4">No estás logueado.</h3>
+        <Link
+          to="/login"
+          className="px-4 py-2 rounded-md text-white"
+          style={{ backgroundColor: '#ff6600' }}
+        >
+          Iniciar sesión
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <main className="max-w-md mx-auto p-6">
       <h2 className="text-2xl font-bold">Perfil</h2>
