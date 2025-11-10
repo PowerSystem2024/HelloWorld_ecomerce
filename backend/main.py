@@ -5,9 +5,12 @@ from fastapi.responses import HTMLResponse, FileResponse
 from pathlib import Path
 import logging
 import os
-from api import products, login, register, create_preference
+from api import products, login, register, create_preference, webhook
 from config.database import engine, Base
 from config.database_initialization import initialize_database
+from api.payment_callbacks import router as callbacks_router
+from config.urls import ENV
+
 
 # Initialize database on startup
 try:
@@ -35,6 +38,12 @@ app.include_router(products.router)
 app.include_router(login.router)
 app.include_router(register.router)
 app.include_router(create_preference.router)
+app.include_router(webhook.router)
+app.include_router(callbacks_router)
+
+# Servir frontend solo en producción
+if ENV == "production":
+    app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="frontend")
 
 @app.get("/{path:path}")
 def serve_spa(path: str):

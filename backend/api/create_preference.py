@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from fastapi import APIRouter, HTTPException
 from config.mercadopago_sdk import sdk
+from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL, BACK_URL
 
 
 class Item(BaseModel):
@@ -13,6 +14,17 @@ class ItemsRequest(BaseModel):
     items: List[Item]
 
 router = APIRouter(prefix="/api/create-preference", tags=["payments"])
+
+def get_back_urls():
+    if ENV == "development":
+        base = BACK_URL
+    else:
+        base = PROD_FRONTEND_URL
+    return {
+        "success": f"{base}/success",
+        "failure": f"{base}/failure",
+        "pending": f"{base}/pending",
+    }
 
 @router.post("")
 async def create_preference(request: ItemsRequest):
@@ -30,15 +42,13 @@ async def create_preference(request: ItemsRequest):
             for item in request.items
         ]
 
+
         preference_data = {
             "items": mp_items,
-            "back_urls": {
-                "success": "https://www.google.com",
-                "failure": "https://www.google.com",
-                "pending": "https://www.google.com",
-            },
+            "back_urls": get_back_urls(),
             "auto_return": "approved",
         }
+
 
         preference_response = sdk.preference().create(preference_data)
         print("Respuesta de Mercado Pago:", preference_response)
