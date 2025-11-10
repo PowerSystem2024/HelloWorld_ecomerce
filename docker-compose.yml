@@ -1,0 +1,67 @@
+services:
+  db:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecommerce_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: backend
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend:cached
+      - ./requirements.txt:/app/requirements.txt
+      - ./frontend/dist:/app/frontend/dist:cached
+    environment:
+      PYTHONPATH: /app/backend
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: ecommerce_db
+      ENV: ${ENV}
+      DEV_FRONTEND_URL: ${DEV_FRONTEND_URL}
+      PROD_FRONTEND_URL: ${PROD_FRONTEND_URL}
+      BACK_URL: ${BACK_URL}
+      TEST_ACCESS_TOKEN: ${TEST_ACCESS_TOKEN}
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET}
+    command: >
+      sh -c "until nc -z db 5432; do echo '⏳ Esperando PostgreSQL...'; sleep 2; done;
+            echo '✅ PostgreSQL listo';
+            uvicorn main:app --host 0.0.0.0 --port 8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    environment:
+      BACKEND_URL: http://backend:8000
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app/frontend:cached
+      - /app/frontend/node_modules
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    command: http backend:8000
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

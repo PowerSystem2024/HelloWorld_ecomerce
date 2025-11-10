@@ -3,7 +3,7 @@ import hmac
 import hashlib
 import urllib.parse
 from config.mercadopago_sdk import sdk
-from config.mercadopago_webhook import WEBHOOK_SECRET
+
 
 
 router = APIRouter(prefix="/api/webhook", tags=["webhook"])

@@ -2,8 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from fastapi import APIRouter, HTTPException
 from config.mercadopago_sdk import sdk
-from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL, BACK_URL
-
+from config.urls import ENV, BACK_URL, PROD_FRONTEND_URL
 
 class Item(BaseModel):
     title: str

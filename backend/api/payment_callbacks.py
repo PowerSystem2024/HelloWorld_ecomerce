@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi.responses import RedirectResponse, HTMLResponse
-from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL
+from config.urls import ENV, DEV_FRONTEND_URL
 
 router = APIRouter(tags=["payment_callbacks"])
 
