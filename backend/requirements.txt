@@ -6,4 +6,5 @@ python-multipart>=0.0.6
 psycopg2-binary>=2.9.0
 mercadopago
 python-dotenv
-passlib[bcrypt]>=1.7.0
+passlib==1.7.4
+bcrypt==3.2.2
