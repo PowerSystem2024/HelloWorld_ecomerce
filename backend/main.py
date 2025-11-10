@@ -9,8 +9,10 @@ from api import products, login, register, create_preference, webhook
 from config.database import engine, Base
 from config.database_initialization import initialize_database
 from api.payment_callbacks import router as callbacks_router
-from config.urls import ENV
+from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL
 
+# Definir URL del frontend según entorno
+FRONTEND_URL = DEV_FRONTEND_URL if ENV != "production" else PROD_FRONTEND_URL
 
 # Initialize database on startup
 try:
@@ -21,10 +23,11 @@ except Exception as e:
 
 app = FastAPI()
 
+
 # CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Frontend URL
+    allow_origins=[FRONTEND_URL],  # Frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,31 +43,3 @@ app.include_router(register.router)
 app.include_router(create_preference.router)
 app.include_router(webhook.router)
 app.include_router(callbacks_router)
-
-# Servir frontend solo en producción
-if ENV == "production":
-    app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="frontend")
-
-@app.get("/{path:path}")
-def serve_spa(path: str):
-    logging.info(f"Serving SPA for path: {path}")
-    if path.startswith("images/"):
-        file_path = os.path.join("uploads", path[len("images/"):])
-        if Path(file_path).exists() and Path(file_path).is_file():
-            return FileResponse(file_path)
-    file_path = Path("../frontend/dist") / path
-    logging.info(f"Checking file path: {file_path}")
-    if file_path.exists() and file_path.is_file():
-        logging.info(f"File exists, serving: {file_path}")
-        return FileResponse(file_path)
-    else:
-        logging.info("File not found, serving index.html")
-        index_path = Path("../frontend/dist/index.html")
-        logging.info(f"Index path: {index_path}, exists: {index_path.exists()}")
-        try:
-            with open("../frontend/dist/index.html", "r") as f:
-                html_content = f.read()
-            return HTMLResponse(content=html_content)
-        except FileNotFoundError as e:
-            logging.error(f"FileNotFoundError: {e}")
-            raise e

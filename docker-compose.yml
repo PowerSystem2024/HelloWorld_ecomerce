@@ -55,13 +55,21 @@ services:
       - ./frontend:/app/frontend:cached
       - /app/frontend/node_modules
 
-  ngrok:
+  ngrok-backend:
     image: ngrok/ngrok:latest
     environment:
       NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
     command: http backend:8000
     depends_on:
       - backend
+
+  ngrok-frontend:
+    image: ngrok/ngrok:latest
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    command: http frontend:5173
+    depends_on:
+      - frontend
 
 volumes:
   pgdata:
