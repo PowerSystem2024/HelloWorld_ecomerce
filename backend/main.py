@@ -9,7 +9,7 @@ from api import products, login, register, create_preference, webhook
 from config.database import engine, Base
 from config.database_initialization import initialize_database
 from api.payment_callbacks import router as callbacks_router
-from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL
+from config.urls import DEV_FRONTEND_URL, PROD_FRONTEND_URL
 
 # Initialize database on startup
 try:
@@ -24,7 +24,7 @@ app = FastAPI()
 # CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://helloworld-ecommerce.onrender.com", DEV_FRONTEND_URL],  # Frontend URL
+    allow_origins=[PROD_FRONTEND_URL, DEV_FRONTEND_URL],  # Frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
