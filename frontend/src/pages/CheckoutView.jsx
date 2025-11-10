@@ -24,7 +24,9 @@ export default function CheckoutView() {
         price: p.price
       }));
 
-      const response = await fetch('/api/create-preference', {
+      const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000'
+      
+      const response = await fetch(`${BASE_URL}/api/create-preference`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: itemsForMP })

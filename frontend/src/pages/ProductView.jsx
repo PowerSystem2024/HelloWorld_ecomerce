@@ -7,11 +7,12 @@ export default function ProductView() {
   const { products, loading } = useProducts()
   const { addToCart } = useCart()
   const navigate = useNavigate()
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000'
 
   if (loading) return <div className="p-6 text-center">Cargando producto...</div>
 
   const prod = products.find(p => p.id === Number(id))
-  const imageUrl = prod?.imageUrl ? `${prod.imageUrl}` : null; // o un placeholder "/images/default.png"
+  const imageUrl = prod?.imageUrl ? `${BASE_URL}${prod.imageUrl}` : null; // o un placeholder "/images/default.png"
 
   if (!prod) return <div className="p-6">Producto no encontrado</div>
 

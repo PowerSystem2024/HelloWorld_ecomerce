@@ -5,6 +5,7 @@ import { useProducts } from '../context/ProductContext'
 export default function Home() {
   const { addToCart } = useCart()
   const { visibleProducts, loading, currentPage, setCurrentPage, products, pageSize } = useProducts()
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000'
 
   if (loading) return <p className="p-6 text-center">Cargando productos...</p>
 
@@ -19,7 +20,7 @@ export default function Home() {
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {visibleProducts.map(p => {
-           const imageUrl = p.imageUrl ? `${p.imageUrl}` : null
+           const imageUrl = p.imageUrl ? `${BASE_URL}${p.imageUrl}` : null
            console.log('Product:', p.name, 'Image URL:', imageUrl)
 
            return (

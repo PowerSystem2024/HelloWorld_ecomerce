@@ -7,12 +7,13 @@ export default function LoginView(){
   const [password, setPassword] = useState('')
   const { login } = useAuth()
   const navigate = useNavigate()
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000'
 
   const submit = async () => {
     if (!email || !password) return alert("Completá email y contraseña");
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(`${BASE_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })

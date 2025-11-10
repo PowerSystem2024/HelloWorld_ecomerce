@@ -10,11 +10,13 @@ export function ProductProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6); // cantidad de productos por página
 
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000';
+
   useEffect(() => {
     async function fetchProducts() {
       try {
-        console.log('Fetching products from /api/products');
-        const res = await fetch('/api/products');
+        console.log(`Fetching products from ${BASE_URL}/api/products`);
+        const res = await fetch(`${BASE_URL}/api/products`);
         console.log('Response status:', res.status);
         console.log('Response headers:', res.headers);
         const data = await res.json();
