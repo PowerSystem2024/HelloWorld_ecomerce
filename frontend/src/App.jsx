@@ -8,6 +8,9 @@ import LoginView from './pages/LoginView'
 import ProfileView from './pages/ProfileView'
 import CheckoutView from './pages/CheckoutView'
 import RegisterView from './pages/RegisterView'
+import PaymentSuccessView from './pages/PaymentSuccessView'
+import PaymentFailureView from './pages/PaymentFailureView'
+import PaymentPendingView from './pages/PaymentPendingView'
 
 export default function App(){
   return (
@@ -22,6 +25,9 @@ export default function App(){
           <Route path='/profile' element={<ProfileView/>} />
           <Route path='/checkout' element={<CheckoutView/>} />
           <Route path='/register' element={<RegisterView/>} />
+          <Route path='/success' element={<PaymentSuccessView />} />
+          <Route path='/failure' element={<PaymentFailureView />} />
+          <Route path='/pending' element={<PaymentPendingView />} />
         </Routes>
       </div>
       <Footer />

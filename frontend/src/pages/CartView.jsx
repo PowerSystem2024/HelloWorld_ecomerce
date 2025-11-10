@@ -32,7 +32,7 @@ export default function CartView(){
             <div key={it.id} className="flex items-center justify-between border rounded p-3">
               <div>
                 <div className="font-semibold text-black">{it.name}</div>
-                <div className="text-sm text-gray-500">${(it.price/100).toFixed(2)}</div>
+                <div className="text-sm text-gray-500">${it.price.toFixed(2)}</div>
               </div>
               <div className="flex items-center gap-3">
                 <input type="number" min={1} value={it.qty} onChange={(e) => updateQty(it.id, parseInt(e.target.value || 0))} className="w-16 p-1 border rounded" />
@@ -43,7 +43,7 @@ export default function CartView(){
 
           <div className="flex items-center justify-between font-bold text-black">
             <div>Total</div>
-            <div>${(cartTotal/100).toFixed(2)}</div>
+            <div>${(cartTotal).toFixed(2)}</div>
           </div>
 
           <div className="flex gap-3">
