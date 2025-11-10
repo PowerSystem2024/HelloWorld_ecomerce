@@ -6,17 +6,20 @@ import './index.css'
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
 import { ProductProvider } from './context/ProductContext'
+import { PaymentProvider } from "./context/PaymentContext";
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <CartProvider>
-        <ProductProvider>
-          <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        </ProductProvider>
-      </CartProvider>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <ProductProvider>
+            <PaymentProvider>
+              <App />
+            </PaymentProvider>
+          </ProductProvider>
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 )

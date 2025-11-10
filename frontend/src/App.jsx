@@ -8,9 +8,8 @@ import LoginView from './pages/LoginView'
 import ProfileView from './pages/ProfileView'
 import CheckoutView from './pages/CheckoutView'
 import RegisterView from './pages/RegisterView'
-import PaymentSuccessView from './pages/PaymentSuccessView'
-import PaymentFailureView from './pages/PaymentFailureView'
-import PaymentPendingView from './pages/PaymentPendingView'
+import PaymentHandler from './PaymentHandler';
+
 
 export default function App(){
   return (
@@ -18,16 +17,13 @@ export default function App(){
       <Navbar />
       <div className="pt-6">
         <Routes>
-          <Route path='/' element={<Home/>} />
+          <Route path='/' element={<PaymentHandler />} />
           <Route path='/product/:id' element={<ProductView/>} />
           <Route path='/cart' element={<CartView/>} />
           <Route path='/login' element={<LoginView/>} />
           <Route path='/profile' element={<ProfileView/>} />
           <Route path='/checkout' element={<CheckoutView/>} />
           <Route path='/register' element={<RegisterView/>} />
-          <Route path='/success' element={<PaymentSuccessView />} />
-          <Route path='/failure' element={<PaymentFailureView />} />
-          <Route path='/pending' element={<PaymentPendingView />} />
         </Routes>
       </div>
       <Footer />

@@ -4,11 +4,9 @@ from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL
 
 router = APIRouter(tags=["payment_callbacks"])
 
-def get_frontend_url(path: str):
-    if ENV == "development":
-        return f"{DEV_FRONTEND_URL}/{path}"
-    else:
-        return f"{PROD_FRONTEND_URL}/{path}"  # URL del frontend desplegado
+def get_frontend_url(status: str):
+    base_url = DEV_FRONTEND_URL if ENV == "development" else PROD_FRONTEND_URL
+    return f"{base_url.rstrip('/')}?status={status}"
 
 @router.get("/success")
 async def payment_success():
