@@ -23,14 +23,18 @@ def get_database_url():
     """
     Construye la URL de conexión para SQLAlchemy
     """
+    # Priorizar DATABASE_URL de Render
+    database_url = os.getenv("DATABASE_URL")
+    if database_url:
+        logger.info("✅ Usando DATABASE_URL desde variable de entorno")
+        return True, database_url
+
     try:
         settings = DatabaseSettings()
-        # URL encode the password to handle special characters like @
         from urllib.parse import quote_plus
         encoded_password = quote_plus(settings.password)
         url = f"postgresql://{settings.user}:{encoded_password}@{settings.host}:{settings.port}/{settings.database}"
 
-        # Validar que password esté presente
         if not settings.password:
             error_msg = "❌ DB_PASSWORD no está configurado"
             logger.error(error_msg)
@@ -43,6 +47,7 @@ def get_database_url():
         error_msg = f"❌ Error construyendo URL de base de datos: {e}"
         logger.error(error_msg)
         return False, error_msg
+
 
 def create_engine_and_session():
     """
