@@ -16,15 +16,17 @@ def get_front_urls():
         "pending": f"{base}?status=pending",
     }
 
-
 @router.get("/success")
 async def payment_success():
-    return RedirectResponse(get_frontend_url("success"))
+    urls = get_front_urls()
+    return RedirectResponse(urls["success"])
 
 @router.get("/failure")
 async def payment_failure():
-    return RedirectResponse(get_frontend_url("failure"))
+    urls = get_front_urls()
+    return RedirectResponse(urls["failure"])
 
 @router.get("/pending")
 async def payment_pending():
-    return RedirectResponse(get_frontend_url("pending"))
+    urls = get_front_urls()
+    return RedirectResponse(urls["pending"])
