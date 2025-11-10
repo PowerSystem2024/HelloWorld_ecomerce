@@ -11,9 +11,6 @@ from config.database_initialization import initialize_database
 from api.payment_callbacks import router as callbacks_router
 from config.urls import ENV, DEV_FRONTEND_URL, PROD_FRONTEND_URL
 
-# Definir URL del frontend según entorno
-FRONTEND_URL = DEV_FRONTEND_URL if ENV != "production" else PROD_FRONTEND_URL
-
 # Initialize database on startup
 try:
     if engine:
@@ -27,7 +24,7 @@ app = FastAPI()
 # CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL],  # Frontend URL
+    allow_origins=["https://helloworld-ecommerce.onrender.com", DEV_FRONTEND_URL],  # Frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
