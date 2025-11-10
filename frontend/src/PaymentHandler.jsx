@@ -7,6 +7,12 @@ import PaymentPendingView from "./pages/PaymentPendingView";
 function PaymentHandler() {
   const { paymentStatus } = usePayment();
 
+  useEffect(() => {
+    if (searchParams.get("status")) {
+      setSearchParams({}); // limpia query params
+    }
+  }, []);
+
   if (!paymentStatus) return <Home />; // si no hay status, mostramos Home
 
   switch (paymentStatus) {
